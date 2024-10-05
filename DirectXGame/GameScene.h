@@ -3,6 +3,9 @@
 #include <KamataEngine.h>
 using namespace KamataEngine;
 
+#include "Player.h"
+
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -44,5 +47,15 @@ private: // メンバ変数
 	/// </summary>
 
 	// テクスチャハンドル
-	//uint32_t textureHandle_ = 0;
+	uint32_t textureHandle_ = 0;
+
+	// プレイヤー3Dモデル
+	Model* model_ = nullptr;
+
+	// カメラ
+	Camera camera_;
+
+	// 自キャラ
+	Player* player_ = nullptr;
+
 };
