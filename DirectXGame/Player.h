@@ -2,6 +2,7 @@
 
 #include <KamataEngine.h>
 using namespace KamataEngine;
+#include "PlayerBullet.h"
 
 // プレイヤー
 
@@ -32,6 +33,12 @@ public:
     void Draw(Camera& viewProjection);
 
 
+    /// <summary>
+    /// 攻撃
+    /// </summary>
+    void Attack();
+
+
 private:
     // ワールド変換データ
     WorldTransform worldTransform_;
@@ -42,6 +49,9 @@ private:
 
     // キーボード入力
     Input* input_ = nullptr;
+
+    // 弾
+    PlayerBullet* bullet_ = nullptr;
 
 };
 
