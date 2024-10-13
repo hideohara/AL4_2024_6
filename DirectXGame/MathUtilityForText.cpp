@@ -154,6 +154,14 @@ Vector3& operator+=(Vector3& lhv, const Vector3& rhv) {
     return lhv;
 }
 
+// Vector3の引算
+Vector3& operator-=(Vector3& lhv, const Vector3& rhv) {
+	lhv.x -= rhv.x;
+	lhv.y -= rhv.y;
+	lhv.z -= rhv.z;
+	return lhv;
+}
+
 // Vector3の掛け算
 Vector3& operator*=(Vector3& v, float s) {
 	v.x *= s;
@@ -162,12 +170,24 @@ Vector3& operator*=(Vector3& v, float s) {
 	return v;
 }
 
+// Vector3の割り算
+Vector3& operator/=(Vector3& v, float s) {
+	v.x /= s;
+	v.y /= s;
+	v.z /= s;
+	return v;
+}
 
 // 2項演算子オーバーロード
 // Vector3の足算
 const Vector3 operator+(const Vector3& v1, const Vector3& v2) {
 	Vector3 temp(v1);
 	return temp += v2;
+}
+// Vector3の引算
+const Vector3 operator-(const Vector3& v1, const Vector3& v2) {
+	Vector3 temp(v1);
+	return temp -= v2;
 }
 
 // Vector3の掛け算
@@ -227,5 +247,15 @@ Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m) {
 	return result;
 }
 
+// ノルム(長さ)を求める
+float Length(const Vector3& v) { return (float)std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z); }
 
-
+// 正規化する
+Vector3 Normalize(const Vector3& v) {
+	float len = Length(v);
+	Vector3 result = v;
+	if (len != 0) {
+		result /= len;
+	}
+	return result;
+}

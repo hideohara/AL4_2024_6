@@ -14,10 +14,18 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rot, const Vecto
 // 代入演算子オーバーロード
 // Vector3の足算
 Vector3& operator+=(Vector3& lhs, const Vector3& rhv);
+// Vector3の引算
+Vector3& operator-=(Vector3& lhs, const Vector3& rhv);
+// Vector3の掛け算
+Vector3& operator*=(Vector3& v, float s);
+// Vector3の割り算
+Vector3& operator/=(Vector3& v, float s);
+
 // 2項演算子オーバーロード
 // Vector3の足算
 const Vector3 operator+(const Vector3& v1, const Vector3& v2);
 const Vector3 operator*(const Vector3& v, float s);
+const Vector3 operator-(const Vector3& v1, const Vector3& v2);
 
 
 
@@ -39,5 +47,8 @@ Vector3 Transform(const Vector3& vector, const Matrix4x4& matrix);
 // ベクトル変換
 Vector3 TransformNormal(const Vector3& v, const Matrix4x4& m);
 
-
+// ノルム(長さ)を求める
+float Length(const Vector3& v);
+// 正規化する
+Vector3 Normalize(const Vector3& v);
 

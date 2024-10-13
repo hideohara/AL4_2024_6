@@ -30,8 +30,6 @@ public:
     void Initialize(Model* model, uint32_t textureHandle);
 
 
-
-
     /// <summary>
     /// 更新
     /// </summary>
@@ -48,6 +46,10 @@ public:
     /// 攻撃
     /// </summary>
     void Attack();
+
+
+    // ワールド座標を取得
+    Vector3 GetWorldPosition();
 
 
 private:

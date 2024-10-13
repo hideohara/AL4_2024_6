@@ -6,6 +6,9 @@ using namespace KamataEngine;
 
 #include <list>
 
+// 自機クラスの前方宣言
+class Player;
+
 class Enemy
 {
 public:
@@ -37,6 +40,12 @@ public:
     /// 攻撃
     /// </summary>
     void Fire();
+
+
+    void SetPlayer(Player* player) { player_ = player; }
+
+    // ワールド座標を取得
+    Vector3 GetWorldPosition();
 
 private:
 
@@ -71,5 +80,11 @@ private:
     int32_t fireTimer_ = 0;
     // 接近フェMoveApproachーズ初期化
     void ApproachInitialize();
+
+
+
+    // 自キャラ
+    Player* player_ = nullptr;
+
 };
 
