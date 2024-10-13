@@ -53,7 +53,6 @@ private: // メンバ変数
 
 	// プレイヤー3Dモデル
 	Model* model_ = nullptr;
-	Model* modelEnemy_ = nullptr;
 
 	// カメラ
 	Camera camera_;

@@ -4,8 +4,8 @@
 using namespace KamataEngine;
 #include "PlayerBullet.h"
 
-#include <list>
 
+#include <list>
 
 
 // プレイヤー

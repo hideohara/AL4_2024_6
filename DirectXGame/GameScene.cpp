@@ -6,7 +6,6 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete model_;
-	delete modelEnemy_;
 
 	delete player_;
 	delete enemy_;
@@ -27,7 +26,6 @@ void GameScene::Initialize() {
 
 	// 3Dモデルの生成
 	model_ = Model::Create(); 
-	modelEnemy_ = Model::Create();
 
 	// カメラ初期化
 	camera_.Initialize();
@@ -39,7 +37,7 @@ void GameScene::Initialize() {
 	// 敵キャラの生成
 	enemy_ = new Enemy();
 	// 敵キャラの初期化
-	enemy_->Initialize(modelEnemy_, textureHandleEnemy_);
+	enemy_->Initialize(model_, textureHandleEnemy_);
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 960);
