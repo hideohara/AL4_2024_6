@@ -28,6 +28,14 @@ public:
     void Draw(Camera& camera);
 
 private:
+
+    // 行動フェーズ
+    enum class Phase {
+        Approach, // 接近する
+        Leave,    // 離脱する
+    };
+
+
     // ワールド変換データ
     WorldTransform worldTransform_;
     // モデル
@@ -35,6 +43,12 @@ private:
     // テクスチャハンドル
     uint32_t textureHandle_ = 0u;
     // 速度
-    Vector3 velocity_ = { 0, 0, -0.3f };
+    Vector3 velocity_ = { 0, 0, -0.2f };
+    Vector3 velocityLeave_ = { -0.3f, 0.3f, -0.2f };
+    // フェーズ
+    Phase phase_ = Phase::Approach;
+
+    void MoveApproach();
+    void MoveLeave();
 };
 
