@@ -6,8 +6,10 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete model_;
+	delete modelEnemy_;
 
 	delete player_;
+	delete enemy_;
 
 	delete debugCamera_;
 
@@ -21,9 +23,11 @@ void GameScene::Initialize() {
 
 	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("mario.jpg");
+	textureHandleEnemy_ = TextureManager::Load("enemy.png");
 
 	// 3Dモデルの生成
 	model_ = Model::Create(); 
+	modelEnemy_ = Model::Create();
 
 	// カメラ初期化
 	camera_.Initialize();
@@ -32,6 +36,10 @@ void GameScene::Initialize() {
 	player_ = new Player();
 	// 自キャラの初期化
 	player_->Initialize(model_,textureHandle_);
+	// 敵キャラの生成
+	enemy_ = new Enemy();
+	// 敵キャラの初期化
+	enemy_->Initialize(modelEnemy_, textureHandleEnemy_);
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 960);
@@ -52,6 +60,7 @@ void GameScene::Update() {
 
 	// 自キャラの更新
 	player_->Update();
+	enemy_->Update();
 
 	// デバッグカメラの更新
 	//debugCamera_->Update();
@@ -103,6 +112,7 @@ void GameScene::Draw() {
 
 	// 自キャラの描画
 	player_->Draw(camera_);
+	enemy_->Draw(camera_);
 
 
 	// 3Dオブジェクト描画後処理

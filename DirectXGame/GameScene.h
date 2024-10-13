@@ -4,6 +4,7 @@
 using namespace KamataEngine;
 
 #include "Player.h"
+#include "Enemy.h"
 
 
 /// <summary>
@@ -48,15 +49,18 @@ private: // メンバ変数
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
+	uint32_t textureHandleEnemy_ = 0;
 
 	// プレイヤー3Dモデル
 	Model* model_ = nullptr;
+	Model* modelEnemy_ = nullptr;
 
 	// カメラ
 	Camera camera_;
 
 	// 自キャラ
 	Player* player_ = nullptr;
+	Enemy* enemy_ = nullptr;
 
 
 	// デバッグカメラ有効

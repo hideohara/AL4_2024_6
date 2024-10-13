@@ -2,26 +2,10 @@
 
 #include <KamataEngine.h>
 using namespace KamataEngine;
-#include "PlayerBullet.h"
 
-#include <list>
-
-
-
-// プレイヤー
-
-class Player
+class Enemy
 {
-
 public:
-
-
-    /// <summary>
-    /// デストラクタ
-    /// </summary>
-    ~Player();
-
-
     /// <summary>
     /// 初期化
     /// </summary>
@@ -43,13 +27,6 @@ public:
     /// <param name="viewProjection">ビュープロジェクション（参照渡し）</param>
     void Draw(Camera& camera);
 
-
-    /// <summary>
-    /// 攻撃
-    /// </summary>
-    void Attack();
-
-
 private:
     // ワールド変換データ
     WorldTransform worldTransform_;
@@ -57,15 +34,7 @@ private:
     Model* model_ = nullptr;
     // テクスチャハンドル
     uint32_t textureHandle_ = 0u;
-
-    // キーボード入力
-    Input* input_ = nullptr;
-
-    // 弾
-    //PlayerBullet* bullet_ = nullptr;
-
-    // 弾
-    std::list<PlayerBullet*> bullets_;
-
+    // 速度
+    Vector3 velocity_ = { 0, 0, -0.3f };
 };
 
