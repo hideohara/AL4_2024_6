@@ -4,12 +4,23 @@
 using namespace KamataEngine;
 #include "PlayerBullet.h"
 
+#include <list>
+
+
+
 // プレイヤー
 
 class Player
 {
 
 public:
+
+
+    /// <summary>
+    /// デストラクタ
+    /// </summary>
+    ~Player();
+
 
     /// <summary>
     /// 初期化
@@ -51,7 +62,10 @@ private:
     Input* input_ = nullptr;
 
     // 弾
-    PlayerBullet* bullet_ = nullptr;
+    //PlayerBullet* bullet_ = nullptr;
+
+    // 弾
+    std::list<PlayerBullet*> bullets_;
 
 };
 

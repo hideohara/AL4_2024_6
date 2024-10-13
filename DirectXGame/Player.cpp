@@ -1,6 +1,13 @@
 #include "Player.h"
 #include "MathUtilityForText.h"
 
+Player::~Player()
+{
+	for (PlayerBullet* bullet : bullets_) {
+		delete bullet;
+	}
+}
+
 void Player::Initialize(Model* model, uint32_t textureHandle)
 {
 
@@ -84,9 +91,10 @@ void Player::Update()
 	Attack();
 
 	// 弾更新
-	if (bullet_) {
-		bullet_->Update();
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Update();
 	}
+
 
 }
 
@@ -97,10 +105,12 @@ void Player::Draw(Camera& camera)
 	model_->Draw(worldTransform_, camera, textureHandle_);
 
 
+
 	// 弾描画
-	if (bullet_) {
-		bullet_->Draw(camera);
+	for (PlayerBullet* bullet : bullets_) {
+		bullet->Draw(camera);
 	}
+
 
 }
 
@@ -110,12 +120,13 @@ void Player::Attack()
 
 	if (input_->TriggerKey(DIK_SPACE)) {
 
+
 		// 弾を生成し、初期化
 		PlayerBullet* newBullet = new PlayerBullet();
 		newBullet->Initialize(model_, worldTransform_.translation_);
 
 		// 弾を登録する
-		bullet_ = newBullet;
+		bullets_.push_back(newBullet);
 	}
 
 }
