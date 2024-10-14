@@ -73,7 +73,7 @@ private: // メンバ変数
 
 	// 各クラス
 	Player* player_ = nullptr;
-	Enemy* enemy_ = nullptr;
+	//Enemy* enemy_ = nullptr;
 	Skydome* skydome_ = nullptr;
 	RailCamera* railCamera_ = nullptr;
 
@@ -86,8 +86,10 @@ private: // メンバ変数
 	// 3Dモデル
 	Model* modelSkydome_ = nullptr;
 
-	// 弾
+	// 敵弾
 	std::list<EnemyBullet*> enemyBullets_;
 
+	// 敵
+	std::list<Enemy*> enemies_;
 
 };

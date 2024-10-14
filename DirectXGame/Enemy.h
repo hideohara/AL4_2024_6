@@ -59,6 +59,8 @@ public:
 
     void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
+    bool IsDead() const { return isDead_; }
+
 private:
 
     // 行動フェーズ
@@ -98,6 +100,8 @@ private:
     // ゲームシーン
     GameScene* gameScene_ = nullptr;
 
+    // デスフラグ
+    bool isDead_ = false;
 
 
 };
