@@ -8,7 +8,7 @@ Enemy::~Enemy()
 {
 }
 
-void Enemy::Initialize(Model* model, uint32_t textureHandle)
+void Enemy::Initialize(Model* model, uint32_t textureHandle, Vector3 position)
 {
 
 	// NULLポインタチェック
@@ -18,7 +18,8 @@ void Enemy::Initialize(Model* model, uint32_t textureHandle)
 	textureHandle_ = textureHandle;
 	model_ = model;
 
-	worldTransform_.translation_ = { 2, 2, 20 };
+	//worldTransform_.translation_ = { 2, 2, 20 };
+	worldTransform_.translation_ = position;
 	worldTransform_.rotation_ = { 0, std::numbers::pi_v<float>, 0 };
 
 	// ワールド変換の初期化
@@ -151,4 +152,5 @@ Vector3 Enemy::GetWorldPosition()
 
 void Enemy::OnCollision()
 {
+	isDead_ = true;
 }

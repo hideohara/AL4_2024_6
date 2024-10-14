@@ -7,7 +7,7 @@ using namespace KamataEngine;
 #include "Enemy.h"
 #include "Skydome.h"
 #include "RailCamera.h"
-
+#include <sstream>
 
 /// <summary>
 /// ゲームシーン
@@ -92,4 +92,24 @@ private: // メンバ変数
 	// 敵
 	std::list<Enemy*> enemies_;
 
+
+	//  敵発生コマンド
+	std::stringstream enemyPopCommands;
+
+
+	/// <summary>
+	/// 敵発生データの読み込み
+	/// </summary>
+	void LoadEnemyPopData();
+
+
+	/// <summary>
+	/// 敵発生コマンドの更新
+	/// </summary>
+	void UpdateEnemyPopCommands();
+
+	void PopEnemy(Vector3 position);
+
+	bool enemyFlag_ = false;
+	int enemyTimer_ = 0;
 };
