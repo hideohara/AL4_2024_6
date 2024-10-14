@@ -47,7 +47,7 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	//player_->Initialize(model_,textureHandle_);
 
-	Vector3 playerPosition(0, 0, 15.0f);
+	Vector3 playerPosition(0, 0, 50.0f);
 	player_->Initialize(model_, textureHandle_, playerPosition);
 
 	//// 敵キャラの生成
