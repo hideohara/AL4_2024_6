@@ -6,6 +6,7 @@ using namespace KamataEngine;
 #include "Player.h"
 #include "Enemy.h"
 #include "Skydome.h"
+#include "RailCamera.h"
 
 
 /// <summary>
@@ -63,11 +64,11 @@ private: // メンバ変数
 	// カメラ
 	Camera camera_;
 
-	// 自キャラ
+	// 各クラス
 	Player* player_ = nullptr;
 	Enemy* enemy_ = nullptr;
 	Skydome* skydome_ = nullptr;
-
+	RailCamera* railCamera_ = nullptr;
 
 	// デバッグカメラ有効
 	bool isDebugCameraActive_ = false;

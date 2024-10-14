@@ -12,7 +12,7 @@ GameScene::~GameScene() {
 	delete player_;
 	delete enemy_;
 	delete skydome_;
-
+	delete railCamera_;
 
 	delete debugCamera_;
 
@@ -37,7 +37,11 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(model_,textureHandle_);
+	//player_->Initialize(model_,textureHandle_);
+
+	Vector3 playerPosition(0, 0, 15.0f);
+	player_->Initialize(model_, textureHandle_, playerPosition);
+
 	// 敵キャラの生成
 	enemy_ = new Enemy();
 	// 敵キャラの初期化
@@ -61,6 +65,15 @@ void GameScene::Initialize() {
 	// スカイドームの初期化
 	skydome_->Initialize(modelSkydome_);
 
+
+	// レールカメラの生成
+	railCamera_ = new RailCamera();
+	// レールカメラの初期化
+	railCamera_->Initialize(Vector3(0, 0, -50), Vector3(0, 0, 0));
+
+
+	// 自キャラとレールカメラの親子関係を結ぶ
+	player_->SetParent(&railCamera_->GetWorldTransform());
 }
 
 void GameScene::Update() {
@@ -86,8 +99,12 @@ void GameScene::Update() {
 		camera_.TransferMatrix();
 	}
 	else {
+		railCamera_->Update();
+		camera_.matView = railCamera_->GetCamera().matView; //デバッグカメラのビュー行列;
+		camera_.matProjection = railCamera_->GetCamera().matProjection; // デバッグカメラのプロジェクション行列;
 		// ビュープロジェクション行列の更新と転送
-		camera_.UpdateMatrix();
+		//camera_.UpdateMatrix();
+		camera_.TransferMatrix();
 	}
 
 	// 衝突判定と応答
