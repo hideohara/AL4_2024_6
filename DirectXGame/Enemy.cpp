@@ -2,12 +2,10 @@
 #include "MathUtilityforText.h"
 #include <numbers>
 #include "Player.h"
+#include "GameScene.h"
 
 Enemy::~Enemy()
 {
-	for (EnemyBullet* bullet : bullets_) {
-		delete bullet;
-	}
 }
 
 void Enemy::Initialize(Model* model, uint32_t textureHandle)
@@ -49,19 +47,19 @@ void Enemy::Update()
 	// 行列を更新
 	worldTransform_.UpdateMatrix();
 
-	// 弾更新
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Update();
-	}
+	//// 弾更新
+	//for (EnemyBullet* bullet : bullets_) {
+	//	bullet->Update();
+	//}
 
-	// デスフラグの立った弾を削除
-	bullets_.remove_if([](EnemyBullet* bullet) {
-		if (bullet->IsDead()) {
-			delete bullet;
-			return true;
-		}
-		return false;
-		});
+	//// デスフラグの立った弾を削除
+	//bullets_.remove_if([](EnemyBullet* bullet) {
+	//	if (bullet->IsDead()) {
+	//		delete bullet;
+	//		return true;
+	//	}
+	//	return false;
+	//	});
 
 }
 
@@ -70,10 +68,10 @@ void Enemy::Draw(Camera& camera)
 	// 3Dモデルを描画
 	model_->Draw(worldTransform_, camera, textureHandle_);
 
-	// 弾描画
-	for (EnemyBullet* bullet : bullets_) {
-		bullet->Draw(camera);
-	}
+	//// 弾描画
+	//for (EnemyBullet* bullet : bullets_) {
+	//	bullet->Draw(camera);
+	//}
 }
 
 void Enemy::Fire()
@@ -99,7 +97,8 @@ void Enemy::Fire()
 	newBullet->Initialize(model_, worldTransform_.translation_, velocity);
 
 	// 弾を登録する
-	bullets_.push_back(newBullet);
+	//bullets_.push_back(newBullet);
+	gameScene_->AddEnemyBullet(newBullet);
 }
 
 void Enemy::MoveApproach()

@@ -6,8 +6,9 @@ using namespace KamataEngine;
 
 #include <list>
 
-// 自機クラスの前方宣言
+// 前方宣言
 class Player;
+class GameScene;
 
 class Enemy
 {
@@ -51,8 +52,12 @@ public:
     // 衝突を検出したら呼び出されるコールバック関数
     void OnCollision();
 
+    /*
     // 弾リストを取得
-    const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+    //const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+    */
+
+    void SetGameScene(GameScene* gameScene) { gameScene_ = gameScene; }
 
 private:
 
@@ -75,8 +80,7 @@ private:
     // フェーズ
     Phase phase_ = Phase::Approach;
 
-    // 弾
-    std::list<EnemyBullet*> bullets_;
+
 
     void MoveApproach();
     void MoveLeave();
@@ -88,10 +92,13 @@ private:
     // 接近フェMoveApproachーズ初期化
     void ApproachInitialize();
 
-
-
     // 自キャラ
     Player* player_ = nullptr;
+
+    // ゲームシーン
+    GameScene* gameScene_ = nullptr;
+
+
 
 };
 

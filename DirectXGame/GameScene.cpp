@@ -16,6 +16,10 @@ GameScene::~GameScene() {
 
 	delete debugCamera_;
 
+	for (EnemyBullet* bullet : enemyBullets_) {
+		delete bullet;
+	}
+
 }
 
 void GameScene::Initialize() {
@@ -48,7 +52,8 @@ void GameScene::Initialize() {
 	enemy_->Initialize(model_, textureHandleEnemy_);
 	// 敵キャラに自キャラのアドレスを渡す
 	enemy_->SetPlayer(player_);
-
+	// 敵キャラにゲームシーンを渡す
+	enemy_->SetGameScene(this);
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 960);
@@ -74,6 +79,7 @@ void GameScene::Initialize() {
 
 	// 自キャラとレールカメラの親子関係を結ぶ
 	player_->SetParent(&railCamera_->GetWorldTransform());
+
 }
 
 void GameScene::Update() {
@@ -109,6 +115,20 @@ void GameScene::Update() {
 
 	// 衝突判定と応答
 	CheckAllCollisions();
+
+	// 弾更新
+	for (EnemyBullet* bullet : enemyBullets_) {
+		bullet->Update();
+	}
+
+	// デスフラグの立った弾を削除
+	enemyBullets_.remove_if([](EnemyBullet* bullet) {
+	if (bullet->IsDead()) {
+		delete bullet;
+		return true;
+	}
+	return false;
+	});
 }
 
 void GameScene::Draw() {
@@ -144,6 +164,10 @@ void GameScene::Draw() {
 	enemy_->Draw(camera_);
 	skydome_->Draw(camera_);
 
+	// 弾描画
+	for (EnemyBullet* bullet : enemyBullets_) {
+		bullet->Draw(camera_);
+	}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -172,7 +196,7 @@ void GameScene::CheckAllCollisions()
 	// 自弾リストの取得
 	const std::list<PlayerBullet*>& playerBullets = player_->GetBullets();
 	// 敵弾リストの取得
-	const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
+	//const std::list<EnemyBullet*>& enemyBullets = enemy_->GetBullets();
 
 #pragma region 自キャラと敵弾の当たり判定
 
@@ -180,7 +204,7 @@ void GameScene::CheckAllCollisions()
 	posA = player_->GetWorldPosition();
 
 	// 自キャラと敵弾全ての当たり判定
-	for (EnemyBullet* bullet : enemyBullets) {
+	for (EnemyBullet* bullet : enemyBullets_) {
 		// 敵弾の座標
 		posB = bullet->GetWorldPosition();
 
@@ -234,7 +258,7 @@ void GameScene::CheckAllCollisions()
 		posA = playerBullet->GetWorldPosition();
 
 		// 敵弾全ての当たり判定
-		for (EnemyBullet* enemyBullet : enemyBullets) {
+		for (EnemyBullet* enemyBullet : enemyBullets_) {
 			// 敵弾の座標
 			posB = enemyBullet->GetWorldPosition();
 
@@ -257,3 +281,9 @@ void GameScene::CheckAllCollisions()
 #pragma endregion
 
 }
+
+void GameScene::AddEnemyBullet(EnemyBullet* enemyBullet) {
+	// リストに登録する
+	enemyBullets_.push_back(enemyBullet);
+}
+
