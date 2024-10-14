@@ -5,6 +5,7 @@ using namespace KamataEngine;
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Skydome.h"
 
 
 /// <summary>
@@ -65,6 +66,7 @@ private: // メンバ変数
 	// 自キャラ
 	Player* player_ = nullptr;
 	Enemy* enemy_ = nullptr;
+	Skydome* skydome_ = nullptr;
 
 
 	// デバッグカメラ有効
@@ -72,6 +74,9 @@ private: // メンバ変数
 
 	// デバッグカメラ
 	DebugCamera* debugCamera_ = nullptr;
+
+	// 3Dモデル
+	Model* modelSkydome_ = nullptr;
 
 
 
