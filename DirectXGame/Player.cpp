@@ -8,7 +8,7 @@ Player::~Player()
 	}
 }
 
-void Player::Initialize(Model* model, uint32_t textureHandle, Vector3 position)
+void Player::Initialize(Model* model, uint32_t textureHandle, Model* modelPlayer, Vector3 position)
 {
 
 	// NULLポインタチェック
@@ -17,6 +17,7 @@ void Player::Initialize(Model* model, uint32_t textureHandle, Vector3 position)
 	// 引数として受け取ったデータをメンバ変数に記録する
 	textureHandle_ = textureHandle;
 	model_ = model;
+	modelPlayer_ = modelPlayer;
 	worldTransform_.translation_ = position;
 
 	// ワールド変換の初期化
@@ -110,7 +111,8 @@ void Player::Draw(Camera& camera)
 {
 
 	// 3Dモデルを描画
-	model_->Draw(worldTransform_, camera, textureHandle_);
+	//model_->Draw(worldTransform_, camera, textureHandle_);
+	modelPlayer_->Draw(worldTransform_, camera);
 
 
 

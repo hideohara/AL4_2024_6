@@ -8,6 +8,7 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete model_;
+	delete modelPlayer_;
 	delete modelSkydome_;
 
 	delete player_;
@@ -38,6 +39,7 @@ void GameScene::Initialize() {
 
 	// 3Dモデルの生成
 	model_ = Model::Create(); 
+	modelPlayer_ = Model::CreateFromOBJ("shooter", true);
 
 	// カメラ初期化
 	camera_.Initialize();
@@ -48,7 +50,7 @@ void GameScene::Initialize() {
 	//player_->Initialize(model_,textureHandle_);
 
 	Vector3 playerPosition(0, 0, 50.0f);
-	player_->Initialize(model_, textureHandle_, playerPosition);
+	player_->Initialize(model_, textureHandle_, modelPlayer_, playerPosition);
 
 	//// 敵キャラの生成
 	//Enemy* enemy = new Enemy();
