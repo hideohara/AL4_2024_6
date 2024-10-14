@@ -28,6 +28,12 @@ public:
 
     bool IsDead() const { return isDead_; }
 
+    // 衝突を検出したら呼び出されるコールバック関数
+    void OnCollision();
+
+    // ワールド座標を取得
+    Vector3 GetWorldPosition();
+
 private:
     // ワールド変換データ
     WorldTransform worldTransform_;

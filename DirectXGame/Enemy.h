@@ -47,6 +47,13 @@ public:
     // ワールド座標を取得
     Vector3 GetWorldPosition();
 
+
+    // 衝突を検出したら呼び出されるコールバック関数
+    void OnCollision();
+
+    // 弾リストを取得
+    const std::list<EnemyBullet*>& GetBullets() const { return bullets_; }
+
 private:
 
     // 行動フェーズ
@@ -63,7 +70,7 @@ private:
     // テクスチャハンドル
     uint32_t textureHandle_ = 0u;
     // 速度
-    Vector3 velocity_ = { 0, 0, -0.1f };
+    Vector3 velocity_ = { 0, 0, -0.03f };
     Vector3 velocityLeave_ = { -0.3f, 0.3f, -0.1f };
     // フェーズ
     Phase phase_ = Phase::Approach;
