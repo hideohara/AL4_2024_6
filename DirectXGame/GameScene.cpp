@@ -160,6 +160,7 @@ void GameScene::Update() {
 
 	UpdateEnemyPopCommands();
 
+	isFinished_ = player_->IsDead();
 }
 
 void GameScene::Draw() {

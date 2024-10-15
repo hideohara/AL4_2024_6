@@ -10,9 +10,10 @@ Player::~Player()
 
 void Player::Initialize(Model* model, uint32_t textureHandle, Model* modelPlayer, Vector3 position)
 {
-
+#ifdef _DEBUG
 	// NULLポインタチェック
 	assert(model);
+#endif
 
 	// 引数として受け取ったデータをメンバ変数に記録する
 	textureHandle_ = textureHandle;
@@ -83,11 +84,12 @@ void Player::Update()
 	// 行列を更新
 	worldTransform_.UpdateMatrix();
 
-
+#ifdef _DEBUG
 	// キャラクターの座標を画面表示する処理
 	ImGui::Begin("DATA");
 	ImGui::InputFloat3("Player", &worldTransform_.translation_.x);
 	ImGui::End();
+#endif
 
 	// キャラクター攻撃処理
 	Attack();
@@ -163,6 +165,7 @@ Vector3 Player::GetWorldPosition()
 
 void Player::OnCollision()
 {
+	isDead_ = true;
 }
 
 void Player::SetParent(const WorldTransform* parent)

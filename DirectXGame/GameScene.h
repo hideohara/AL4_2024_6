@@ -52,6 +52,8 @@ public: // メンバ関数
 	/// <param name="enemyBullet">敵弾</param>
 	void AddEnemyBullet(EnemyBullet* enemyBullet);
 
+	bool IsFinished() { return isFinished_; }
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -113,4 +115,6 @@ private: // メンバ変数
 
 	bool enemyFlag_ = false;
 	int enemyTimer_ = 0;
+
+	bool isFinished_ = false;
 };

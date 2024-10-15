@@ -33,6 +33,7 @@ void RailCamera::Update()
 	// 教材に書いていない
 	camera_.TransferMatrix();
 
+#ifdef _DEBUG
 	// カメラの座標を画面表示する処理
 	ImGui::Begin("Camera");
 	//スライダーでカメラのtranslationを表示
@@ -40,4 +41,6 @@ void RailCamera::Update()
 	//	スライダーでカメラのrotationを表示
 	ImGui::SliderFloat3("Rotation", (float*)&worldTransform_.rotation_, -std::numbers::pi_v<float>, std::numbers::pi_v<float>);
 	ImGui::End();
+#endif
+
 }

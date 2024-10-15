@@ -3,8 +3,10 @@
 
 void PlayerBullet::Initialize(Model* model, const Vector3& position, const Vector3& velocity)
 {
+#ifdef _DEBUG
 	// NULLポインタチェック
 	assert(model);
+#endif
 
 	model_ = model;
 	// テクスチャ読み込み

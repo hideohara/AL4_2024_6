@@ -3,8 +3,10 @@
 
 void Skydome::Initialize(Model* model)
 {
+#ifdef _DEBUG
 	// NULLポインタチェック
 	assert(model);
+#endif
 
 	// 引数として受け取ったデータをメンバ変数に記録する
 	model_ = model;

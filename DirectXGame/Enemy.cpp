@@ -10,9 +10,10 @@ Enemy::~Enemy()
 
 void Enemy::Initialize(Model* model, uint32_t textureHandle, Vector3 position)
 {
-
+#ifdef _DEBUG
 	// NULLポインタチェック
 	assert(model);
+#endif
 
 	// 引数として受け取ったデータをメンバ変数に記録する
 	textureHandle_ = textureHandle;
@@ -77,7 +78,9 @@ void Enemy::Draw(Camera& camera)
 
 void Enemy::Fire()
 {
+#ifdef _DEBUG
 	assert(player_);
+#endif
 
 	// 弾の速さ（調整項目）
 	const float kBulletSpeed = 0.4f;

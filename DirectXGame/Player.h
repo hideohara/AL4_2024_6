@@ -63,6 +63,7 @@ public:
     /// <param name="parent">親となるワールドトランスフォーム</param>
     void SetParent(const WorldTransform* parent);
 
+    bool IsDead() const { return isDead_; }
 
 private:
     // ワールド変換データ
@@ -82,5 +83,7 @@ private:
     // 弾
     std::list<PlayerBullet*> bullets_;
 
+    // デスフラグ
+    bool isDead_ = false;
 };
 
