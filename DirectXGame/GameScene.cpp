@@ -47,22 +47,8 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	//player_->Initialize(model_,textureHandle_);
-
 	Vector3 playerPosition(0, 0, 50.0f);
 	player_->Initialize(model_, textureHandle_, modelPlayer_, playerPosition);
-
-	//// 敵キャラの生成
-	//Enemy* enemy = new Enemy();
-	//// 敵キャラの初期化
-	//enemy->Initialize(model_, textureHandleEnemy_);
-	//// 敵キャラに自キャラのアドレスを渡す
-	//enemy->SetPlayer(player_);
-	//// 敵キャラにゲームシーンを渡す
-	//enemy->SetGameScene(this);
-	//// 敵を登録する
-	//enemies_.push_back(enemy);
-	
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 960);
